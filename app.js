@@ -9,7 +9,6 @@ var usersRouter = require("./routes/users");
 
 var app = express();
 
-var constants = require("./constants");
 var payload = require("./utils/payload-util");
 
 // view engine setup
@@ -38,7 +37,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   const status = err.status || 500;
-  const code = err.code || constants.ERR_CODE_AUTO;
+  const code = err.code || -1;
   res.status(status);
   res.json(payload.error(status, code, err.message));
 });
