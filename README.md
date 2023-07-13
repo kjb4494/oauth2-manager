@@ -133,6 +133,29 @@ nodejs express study toy project
   }
   ```
 
+## Serverless로 변경하기
+
+- serverless tool 설치
+  ```shell
+  npm install -g serverless
+  ```
+- serverless 적용하기
+  ```shell
+  <!-- .gitignore을 잠시 삭제 후 진행해야함 -->
+  serverless create --template aws-nodejs
+  ```
+- 프로젝트에 맞게 handler.js 수정
+- 테스트를 위해 serverless offine 설치
+  ```shell
+  npm install serverless-offline --save-dev
+  npm install serverless-http --save-dev
+  ```
+- serverless.yml 수정
+- 로컬에서 offine 모드로 테스트
+  ```shell
+  serverless offline
+  ```
+
 ## 참고
 
 - [_Express 애플리케이션 생성기_](https://expressjs.com/ko/starter/generator.html)

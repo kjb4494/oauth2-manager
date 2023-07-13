@@ -15,7 +15,7 @@ module.exports = {
    */
   getErrorTest: function (e) {
     if (!e) {
-      throw errorUtil.execpt(error.type.test);
+      throw errorUtil.execpt(errorUtil.type.test);
     }
     return {
       test: "passed!",

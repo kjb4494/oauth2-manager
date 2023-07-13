@@ -1,0 +1,19 @@
+service: oauth2-manager
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-northeast-2
+
+plugins:
+  - serverless-offline
+
+functions:
+  app:
+    handler: handler.app
+    events:
+      - http:
+          path: /
+          method: any
+      - http:
+          path: /{proxy+}
+          method: any
