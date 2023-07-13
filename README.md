@@ -11,9 +11,42 @@ nodejs express study toy project
   npm install
   ```
 - 로컬 서버 실행
-  ```shell
-  DEBUG=myapp:* npm start
-  ```
+
+  - 데이터베이스 설정
+
+    ```json
+    <!-- config/config.sample.json을 참고하여 config/config.json을 작성 -->
+    {
+      "development": {
+        "username": "",
+        "password": "",
+        "database": "",
+        "host": "",
+        "dialect": "mysql"
+      },
+      "test": {
+        "username": "",
+        "password": "",
+        "database": "",
+        "host": "",
+        "dialect": "mysql"
+      },
+      "production": {
+        "username": "",
+        "password": "",
+        "database": "",
+        "host": "",
+        "dialect": "mysql"
+      }
+    }
+    ```
+
+  - 실행 명령어
+
+    ```shell
+    DEBUG=myapp:* npm start
+    ```
+
 - vscode settings
   ```json
   {
@@ -40,6 +73,65 @@ nodejs express study toy project
   - TypeScript Vue Plugin (Volar)
   - Vue Language Features (Volar)
   - vue3-snippets-for-vscode
+
+## Sequelize (ORM) 사용하기
+
+- 설치
+  ```shell
+  npm install sequelize sequelize-cli mysql2
+  ```
+- 초기화
+  ```shell
+  npx sequelize-cli init
+  ```
+- config/database.js 파일 생성
+
+  ```javascript
+  const { Sequelize } = require("sequelize");
+
+  // 개발 환경에서의 설정을 사용합니다.
+  const env = process.env.NODE_ENV || "development";
+  const config = require(__dirname + "/config.json")[env];
+
+  // Sequelize 인스턴스를 생성합니다.
+  const sequelize = new Sequelize(
+    config.database,
+    config.username,
+    config.password,
+    config
+  );
+
+  // sequelize 객체를 내보냅니다.
+  module.exports = sequelize;
+  ```
+
+- config/config.json에 데이터베이스 정보 설정 (.gitignore 설정 할 것!)
+
+  ```json
+  {
+    "development": {
+      "username": "",
+      "password": "",
+      "database": "",
+      "host": "",
+      "dialect": "mysql"
+    },
+    "test": {
+      "username": "",
+      "password": "",
+      "database": "",
+      "host": "",
+      "dialect": "mysql"
+    },
+    "production": {
+      "username": "",
+      "password": "",
+      "database": "",
+      "host": "",
+      "dialect": "mysql"
+    }
+  }
+  ```
 
 ## 참고
 
